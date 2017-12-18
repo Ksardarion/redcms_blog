@@ -36,7 +36,7 @@ if ($arr = $q->fetchAll()) {
         $post->icon('news');
         $post->content = text::toOutput($preview);
         $post->title = text::toValue($blog['title']);
-        $post->url = 'category.php?id=' . $blog['id'];
+        $post->url = 'blog.php?id=' . $blog['id'];
         $post->time = misc::when($blog['time']);
         $post->bottom = '<a href="/profile.view.php?id=' . $blog['author'] . '">' . $ank->nick() . '</a>';
     }
