@@ -21,6 +21,16 @@ if(empty($category)){
 }
 
 $doc->title = __($category['name']);
+$doc->ret(__('Блоги'), '/blogs/');
+
+$listing = new listing();
+
+$post = $listing->post();
+$post->title = __('Category <b>' . $category['name'] . '</b>');
+$post->icon('info');
+$post->content = text::toOutput($category['description']);
+
+$listing->display();
 
 $pages = new pages;
 
@@ -33,7 +43,7 @@ if ($arr = $q->fetchAll()) {
         $preview = ($blog['preview']) ? $blog['preview'] : mb_strimwidth($blog['content'], 0, 1000);
         $post = $listing->post();
         $ank = new user((int) $blog['author']);
-        $post->icon('news');
+        $post->icon('code');
         $post->content = text::toOutput($preview);
         $post->title = text::toValue($blog['title']);
         $post->url = 'blog.php?id=' . $blog['id'];
