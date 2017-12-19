@@ -22,20 +22,22 @@ class data
         $res->execute();
         return $res;
     }
-    public static function getDataWithRelAndLimit($table, $relName, $rel, $limit){
-        $sql = "SELECT * FROM `{$table}` WHERE `{$relName}` = {$rel} LIMIT {$limit}";
+    public static function getDataWithRelAndLimit($table, $relName, $rel, $limit = ''){
+        $limit = ($limit) ? 'LIMIT ' . $limit : '';
+        $sql = "SELECT * FROM `{$table}` WHERE `{$relName}` = {$rel} {$limit}";
         $res = DB::me()->prepare($sql);
         $res->execute();
         return $res;
     }
-    public static function getCountOfRows($table){
-        $sql = "SELECT COUNT(*) FROM `{$table}`";
+    public static function getCountOfRows($table, $rel = ''){
+        $where = ($rel) ? 'WHERE ' . $rel : '';
+        $sql = "SELECT COUNT(*) FROM `{$table}` $where";
         $res = DB::me()->prepare($sql);
         $res->execute();
         return $res->rowCount();
     }
     public static function getRowById($table, $id){
-        $sql = "SELECT * FROM `{$table}` WHERE `id` = ?";
+        $sql = "SELECT * FROM `{$table}` WHERE `id` = ? LIMIT 1";
         $res = DB::me()->prepare($sql);
         $res->execute(Array($id));
         return $res->fetch();
