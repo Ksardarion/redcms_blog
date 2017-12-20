@@ -19,7 +19,7 @@ class blogs
         return $res->execute(Array($blogId, $userId, $time));
     }
     public static function checkViewer($userId){
-        return (data::getDataWithRelAndLimit('blogs_views', 'userId', $userId, 1));
+        return (data::getDataWithRelAndLimit('blogs_views', 'userId', $userId, 1)->fetch());
     }
     public static function getPreview($blogId){
         $blog = data::getRowById('blogs', $blogId);
