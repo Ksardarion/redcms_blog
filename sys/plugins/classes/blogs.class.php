@@ -13,4 +13,16 @@ class blogs
         $res = DB::me()->prepare($sql);
         return $res->execute(Array($title, $text, $preview, $time, $author, $catId));
     }
+    public static function addViewer($blogId, $userId, $time){
+        $sql = "INSERT INTO `blogs_views` (`id_blog`, `userId`, `time`) VALUES (?, ?, ?)";
+        $res = DB::me()->prepare($sql);
+        return $res->execute(Array($blogId, $userId, $time));
+    }
+    public static function checkViewer($userId){
+        return (data::getDataWithRelAndLimit('blogs_views', 'userId', $userId, 1)->fetch());
+    }
+    public static function getPreview($blogId){
+        $blog = data::getRowById('blogs', $blogId);
+        return ($blog['preview']) ? $blog['preview'] : mb_strimwidth($blog['content'], 0, 500);
+    }
 }
