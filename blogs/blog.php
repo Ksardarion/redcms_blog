@@ -1,3 +1,6 @@
+<script type="application/javascript">
+
+</script>
 <?php
 /**
  * Created by PhpStorm.
@@ -34,6 +37,7 @@ $post->image = $ank->ava();
 $post->content = text::toOutput($blog['content']);
 $post->title = '<a href="/profile.view.php?id=' . $blog['author'] . '">' . $ank->nick() . '</a> <b>' . text::toValue($blog['title']) . '</b>';
 $post->time = misc::when($blog['time']);
+if($user->access('blogs_delete_blog') || $user->id == $blog['author'])$post->action('delete', 'actions/delete.blog.php?id='.$blog['id'].'' );
 //$post->bottom = '<a href="/profile.view.php?id=' . $blog['author'] . '">' . $ank->nick() . '</a>';
 $listing->display();
 
