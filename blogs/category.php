@@ -44,7 +44,7 @@ if ($arr = $q->fetchAll()) {
         $post = $listing->post();
         $ank = new user((int) $blog['author']);
         $post->icon('code');
-        $post->content = text::toOutput($preview);
+        $post->content = text::toOutput(blogs::getPreview($blog['id']));
         $post->title = text::toValue($blog['title']);
         $post->url = 'blog.php?id=' . $blog['id'];
         $post->time = misc::when($blog['time']);

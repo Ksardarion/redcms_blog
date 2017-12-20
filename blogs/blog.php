@@ -9,6 +9,7 @@
 require_once '../sys/inc/start.php';
 require_once '../sys/plugins/classes/blogs.categories.class.php';
 require_once '../sys/plugins/classes/blogs.comments.class.php';
+require_once '../sys/plugins/classes/blogs.class.php';
 
 if (AJAX)
     $doc = new document_json();
@@ -23,7 +24,9 @@ if(empty($blog)){
     $doc->err(__('Блог не существует'));
     exit();
 }
-
+if(!blogs::checkViewer($user->id)){
+    blogs::addViewer($blog['id'], $user->id, TIME);
+}
 $listing = new listing();
 $post = $listing->post();
 $ank = new user((int) $blog['author']);
