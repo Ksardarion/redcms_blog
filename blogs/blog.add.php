@@ -26,7 +26,7 @@ if (isset($_POST['send']) && isset($_POST['title']) && isset($_POST['text'])) {
     $title = text::for_name($_POST['title']);
     $text = text::input_text($_POST['text']);
     $preview = text::input_text($_POST['preview']);
-    
+
     if (!$title){
         $doc->err(__('Заполните "Название блога"'));
     }elseif (!$text) {
