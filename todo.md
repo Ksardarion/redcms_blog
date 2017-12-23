@@ -33,3 +33,5 @@
     1. Length of preview must be different for WEB and smart themes
     1. Default length of preview can set into dPanel
     1. User can set sprecific length of preview
+
+1. When user create new blog, he can view blog befire creating

@@ -8,7 +8,7 @@
 
 require_once '../sys/inc/start.php';
 
-$doc = new document();
+$doc = new document(1);
 
 $doc->title = __('Создание блога');
 
