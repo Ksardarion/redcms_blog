@@ -47,4 +47,9 @@ class data
         $res = DB::me()->prepare($sql);
         return $res->execute(Array($name, $description));
     }
+    public static function deleteRowById($table, $id){
+        $sql = "DELETE FROM {$table} WHERE `id` = {$id}";
+        $res = DB::me()->prepare($sql);
+        return $res->execute();
+    }
 }

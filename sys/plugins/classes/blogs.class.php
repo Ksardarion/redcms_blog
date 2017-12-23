@@ -25,4 +25,7 @@ class blogs
         $blog = data::getRowById('blogs', $blogId);
         return ($blog['preview']) ? $blog['preview'] : mb_strimwidth($blog['content'], 0, 500);
     }
+    public static function deleteBlog($blogId){
+        return data::deleteRowById('blogs', $blogId);
+    }
 }

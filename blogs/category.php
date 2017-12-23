@@ -49,9 +49,12 @@ if ($arr = $q->fetchAll()) {
         $post->url = 'blog.php?id=' . $blog['id'];
         $post->time = misc::when($blog['time']);
         $post->bottom = '<a href="/profile.view.php?id=' . $blog['author'] . '">' . $ank->nick() . '</a>';
+        if($user->access('blogs_delete_blog') || $user->id == $blog['author'])
+            $post->action('delete', 'actions/delete.blog.php?id='.$blog['id'].'' );
+
     }
 }
 $listing->display(__('Блоги отсутствуют'));
 $pages->display('?');
-
-$doc->act(__('Создать блог'), 'blog.add.php?id_category=' . $category['id'] . "&amp;return=" . URL);
+if($user->id)
+    $doc->act(__('Создать блог'), 'blog.add.php?id_category=' . $category['id'] . "&amp;return=" . URL);
