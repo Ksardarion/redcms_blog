@@ -26,6 +26,8 @@ class blogs
         return ($blog['preview']) ? $blog['preview'] : mb_strimwidth($blog['content'], 0, 500);
     }
     public static function deleteBlog($blogId){
-        return data::deleteRowById('blogs', $blogId);
+        $deleteingBlogResult = data::deleteRowById('blogs', $blogId);
+        $deleteingCommentsFromBlogResult = blogComments::deleteAllComments($blogId);
+        return ($deleteingBlogResult && $deleteingCommentsFromBlogResult);
     }
 }

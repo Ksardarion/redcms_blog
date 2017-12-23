@@ -11,4 +11,9 @@ class blogComments{
         $res = DB::me()->prepare($sql);
         return $res->execute(Array($userId, $time, $message, $blogId));
     }
+    public static function deleteAllComments($blogId){
+        $sql = "DELETE FROM `blogs_comments` WHERE `blogId` = ?";
+        $res = DB::me()->prepare($sql);
+        return $res->execute(Array($blogId));
+    }
 }
