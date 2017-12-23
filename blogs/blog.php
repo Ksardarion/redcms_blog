@@ -1,6 +1,3 @@
-<script type="application/javascript">
-
-</script>
 <?php
 /**
  * Created by PhpStorm.
@@ -89,7 +86,7 @@ if ($can_write && $pages->this_page == 1) {
             }
         }
         if (!AJAX) {
-            $form = new form('?id=' . $blog['id'] . passgen());
+            $form = new form('?id=' . $blog['id'] . '&' . passgen());
             $form->refresh_url('?id=' . $blog['id'] . passgen());
             $form->setAjaxUrl('?id=' . $blog['id']);
             $form->hidden('token', antiflood::getToken('blogs_comments' . $blog['id']));
@@ -145,4 +142,5 @@ $listing->display(__('Сообщения отсутствуют'));
 $pages->display('?id=' . $blog['id']); // вывод страниц
 if ($doc instanceof document_json)
     $doc->set_pages($pages);
-if($user->access('chat_del_post_all'))$doc->act(__('Удаление сообщений'), 'message.delete_all.php');
+if($user->access('chat_del_post_all') || $blog['author'] == $user->id)
+    $doc->act(__('Очистить комментарии'), 'actions/delete.all.comments.php?id=' . $blog['id']);
