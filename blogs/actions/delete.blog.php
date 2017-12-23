@@ -8,7 +8,7 @@
 require_once '../../sys/inc/start.php';
 require_once '../../sys/plugins/classes/blogs.class.php';
 
-$doc = new document();
+$doc = new document(1);
 if (!isset($_GET ['id']) || !is_numeric($_GET ['id'])) {
     $doc->toReturn('./');
     $doc->err(__('Ошибка выбора блога'));
@@ -23,7 +23,7 @@ if (!$blog['id']) {
     exit();
 }
 
-if($user->access('blogs_delete_blog') || $blog['author'] !== $user->id) {
+if(!$user->access('blogs_delete_blog') && $blog['author'] !== $user->id) {
     if (isset($_GET ['return']))
         $doc->ret(__('Вернуться'), text::toValue($_GET ['return']));
     else
