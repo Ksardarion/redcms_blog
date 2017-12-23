@@ -21,12 +21,11 @@ $text = '';
 $preview = '';
 
 if (isset($_POST['send']) && isset($_POST['title']) && isset($_POST['text'])) {
-
     $categoryId = (int) $_GET['id_category'];
     $title = text::for_name($_POST['title']);
     $text = text::input_text($_POST['text']);
     $preview = text::input_text($_POST['preview']);
-    
+
     if (!$title){
         $doc->err(__('Заполните "Название блога"'));
     }elseif (!$text) {
