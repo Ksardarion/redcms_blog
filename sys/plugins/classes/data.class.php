@@ -31,7 +31,7 @@ class data
     }
     public static function getCountOfRows($table, $rel = ''){
         $where = ($rel) ? 'WHERE ' . $rel : '';
-        $sql = "SELECT COUNT(*) FROM `{$table}` $where";
+        $sql = "SELECT COUNT(*) FROM `{$table}` {$where}";
         $res = DB::me()->prepare($sql);
         $res->execute();
         return $res->rowCount();
