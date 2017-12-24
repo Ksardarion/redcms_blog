@@ -24,6 +24,7 @@ if(empty($blog)){
     $doc->err(__('Блог не существует'));
     exit();
 }
+
 if(!blogs::checkViewer($user->id, $blog['id']) && $user->id != 0){
     blogs::addViewer($blog['id'], $user->id, TIME);
 }
