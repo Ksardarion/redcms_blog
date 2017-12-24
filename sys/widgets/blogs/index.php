@@ -20,7 +20,7 @@ while($blog = $blogs->fetch()){
     $post->title = __($blog['title']);
     $post->time = misc::when($blog['time']);
     $author = new user($blog['author']);
-    
+
     $post->content = 'Автор: ' . $author->nick . '<br />';
     $post->content .= 'Категория: <a href="/blogs/category.php?id=' . $category['id'] . '">' . $category['name'] . '</a><br />';
     $post->url = '/blogs/blog.php?id=' . $blog['id'];
