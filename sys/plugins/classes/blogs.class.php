@@ -18,8 +18,8 @@ class blogs
         $res = DB::me()->prepare($sql);
         return $res->execute(Array($blogId, $userId, $time));
     }
-    public static function checkViewer($userId){
-        return (data::getDataWithRelAndLimit('blogs_views', 'userId', $userId, 1)->fetch());
+    public static function checkViewer($userId, $blogId){
+        return (data::getCountOfRows('blogs_views', '`userId` = ' . $userId . ' AND `id_blog` = ' . $blogId));
     }
     public static function getPreview($blogId){
         $blog = data::getRowById('blogs', $blogId);

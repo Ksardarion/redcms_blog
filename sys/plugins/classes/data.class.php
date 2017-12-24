@@ -33,6 +33,7 @@ class data
         $where = ($rel) ? 'WHERE ' . $rel : '';
         $sql = "SELECT COUNT(*) FROM `{$table}` {$where}";
         $res = DB::me()->prepare($sql);
+
         $res->execute();
         return $res->rowCount();
     }
