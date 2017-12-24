@@ -6,9 +6,9 @@
  * Time: 10:57 AM
  */
 
-require_once '../../sys/inc/start.php';
-require_once '../../sys/plugins/classes/blogs.class.php';
-require_once '../../sys/plugins/classes/blogs.comments.class.php';
+require_once '../sys/inc/start.php';
+require_once '../sys/plugins/classes/blogs.class.php';
+require_once '../sys/plugins/classes/blogs.comments.class.php';
 
 $doc = new document(1);
 
@@ -26,7 +26,7 @@ if (!$blog['id']) {
     exit();
 }
 
-$doc->title(__('Редактирование блога - ' . $blog['title']));
+$doc->title = ('Редактирование блога - ' . $blog['title']);
 
 $title = $blog['title'];
 $preview = $blog['preview'];
@@ -37,5 +37,5 @@ $form->text('title', __('Название блога'), $title);
 $form->textarea('preview', __('Предпросмотр'), $preview);
 $form->textarea('text', __('Содержание блога'), $text);
 $form->button(__('Изменить'), 'edit', false);
-$form->button(__('Предпросмотр'), 'blog_preview', false);
+//$form->button(__('Предпросмотр'), 'blog_preview', false);
 $form->display();
