@@ -30,4 +30,9 @@ class blogs
         $deleteingCommentsFromBlogResult = blogComments::deleteAllComments($blogId);
         return ($deleteingBlogResult && $deleteingCommentsFromBlogResult);
     }
+    public static function editBlog($title, $content, $preview){
+        $sql = "UPDATE `blogs` SET `title` = ?, `content` = ?, `preview` = ?";
+        $res = DB::me()->prepare($sql);
+        return $res->execute(Array($title, $content, $preview));
+    }
 }
