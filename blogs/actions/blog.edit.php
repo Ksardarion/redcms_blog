@@ -21,7 +21,7 @@ if(isset($_POST['edit']) && isset($_POST['title']) && isset($_POST['text'])){
     }elseif (!$text) {
         $doc->err(__('Заполните "Содержание блога"'));
     }else {
-        $res = blogs::editBlog($title, $text, $preview);
+        $res = blogs::editBlog($_GET['id'], $title, $text, $preview);
         if($res){
             $doc->msg(__('Блог успешно отредактирован'));
             exit;
