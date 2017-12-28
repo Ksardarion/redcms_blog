@@ -16,6 +16,12 @@ if (AJAX)
 else
     $doc = new document();
 
+if (!isset($_GET ['id']) || !is_numeric($_GET ['id'])) {
+    $doc->toReturn('./');
+    $doc->err(__('Ошибка выбора блога'));
+    exit();
+}
+
 $id = $_GET['id'];
 $blog = data::getRowById('blogs', $id);
 

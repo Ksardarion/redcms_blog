@@ -11,6 +11,12 @@ require_once '../sys/plugins/classes/blogs.categories.class.php';
 
 $doc = new document();
 
+if (!isset($_GET ['id']) || !is_numeric($_GET ['id'])) {
+    $doc->toReturn('./');
+    $doc->err(__('Ошибка выбора категории'));
+    exit();
+}
+
 $id = $_GET['id'];
 $category = data::getRowById('blogs_categories', $id);
 
