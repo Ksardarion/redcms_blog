@@ -2,7 +2,9 @@
 include_once '../../sys/inc/start.php';
 dpanel::check_access();
 $doc = new document(2);
-if(!$user->access('news_add')) $doc->access_denied(__('У Вас нет доступа!'));
+if(!$user->access('blogs_category_add'))
+    $doc->access_denied(__('У Вас нет доступа!'));
+
 $doc->title = __('Создание категории');
 $doc->ret(__('Админка'), '../');
 $doc->ret(__('К блогам'), '/blogs/');
