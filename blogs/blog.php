@@ -125,7 +125,8 @@ if ($arr = $q->fetchAll()) {
 
         if($user->id) {
             $post->action('quote', '?message=' . $message['id'] . '&amp;quote');
-            if($user->access('chat_del_post'))$post->action('delete', 'message.delete.php?id='.$message['id'].'' );
+            if($user->access('blogs_delete_comments'))
+                $post->action('delete', 'actions/delete.blog.comment.php?id='.$message['id'].'' );
             $post->action('user.1', '/profile.view.php?id='.$ank->id);
         }
 
@@ -146,5 +147,5 @@ $listing->display(__('Сообщения отсутствуют'));
 $pages->display('?id=' . $blog['id']); // вывод страниц
 if ($doc instanceof document_json)
     $doc->set_pages($pages);
-if($user->access('chat_del_post_all') || $blog['author'] == $user->id)
+if($user->access('blogs_delete_comments') || $blog['author'] == $user->id)
     $doc->act(__('Очистить комментарии'), 'actions/delete.all.comments.php?id=' . $blog['id']);

@@ -16,4 +16,5 @@ class blogComments{
         $res = DB::me()->prepare($sql);
         return $res->execute(Array($blogId));
     }
+
 }
