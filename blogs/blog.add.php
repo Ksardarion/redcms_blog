@@ -14,6 +14,11 @@ $doc->title = __('Создание блога');
 
 $doc->ret(__('К категориям'), '/blogs/');
 
+if (!isset($_GET ['id_category']) || !is_numeric($_GET ['id_category'])) {
+    $doc->toReturn('./');
+    $doc->err(__('Ошибка выбора категории'));
+    exit();
+}
 $categoryId = $_GET['id_category'];
 
 $title = '';
